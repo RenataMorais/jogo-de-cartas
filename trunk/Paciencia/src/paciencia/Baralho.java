@@ -3,30 +3,30 @@ package paciencia;
 import java.util.Stack;
 
 /**
- * @projeto Jogo de Cartas
- * @disciplina Padrões e Frameworks
- * @autor João Carlos Nunes Bittencourt
+ * @version 1.0b
+ * @see Disciplina Padrões e Frameworks
+ * @author João Carlos Nunes Bittencourt
  */
 public class Baralho {
 
+    /**
+     *
+     */
     public Stack produzBaralho() {
-        Stack<Carta> pilha = new Stack<Carta>();
+        Stack<Carta> baralho = new Stack<Carta>();
         Carta carta = new Carta();
         int i = 0;
 
         while (i <= 52) {
             carta = carta.geraCarta();
-            if (carta.getNaipe() != 0 && carta.getValor() != 0) {
-                if (pilha.contains(carta) == false) {
-                    pilha.push(carta);
-                    i++;
+            for (int j = 0; j < baralho.size(); j++) {
+                while ((baralho.elementAt(j).getNaipe() == carta.getNaipe()) && (baralho.elementAt(j).getValor() == carta.getValor())) {
+                    carta = carta.geraCarta();
                 }
             }
-//        System.out.println("Saí!");
-//        for(i = 0; i == pilha.size(); i++){
-//            carta = pilha.pop();
-//            System.out.println(carta.getValor());
+            baralho.push(carta);
+            i++;
         }
-        return pilha;
+        return baralho;
     }
 }
