@@ -17,7 +17,7 @@ public class Baralho {
         Carta carta = new Carta();
         int i = 0;
 
-        while (i <= 52) {
+        while (i < 53) {
             carta = carta.geraCarta();
             for (int j = 0; j < baralho.size(); j++) {
                 while ((baralho.elementAt(j).getNaipe() == carta.getNaipe()) && (baralho.elementAt(j).getValor() == carta.getValor())) {
