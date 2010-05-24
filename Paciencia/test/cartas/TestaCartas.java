@@ -52,28 +52,21 @@ public class TestaCartas {
         boolean test;
 
         test = geraCartaAux();
-        assertEquals(true, test);
-
-        test = geraCartaAux();
-        assertEquals(true, test);
-
-        test = geraCartaAux();
-        assertEquals(true, test);
-
+        assertEquals(true, test);      
     }
 
     public boolean geraCartaAux() {
         Carta carta = new Carta();
         boolean a = false;
 
-        carta =
-                carta.geraCarta();
-        if (carta.getValor() >= 1 && carta.getValor() <= 13) {
-            a = true;
-        } else {
-            a = false;
+        for (int i = 0; i < 52; i++) {
+            carta = carta.geraCarta();
+            if (carta.getValor() >= 1 && carta.getValor() <= 13) {
+                a = true;
+            } else {
+                a = false;
+            }
         }
-
         return a;
     }
 }
