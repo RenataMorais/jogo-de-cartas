@@ -1,5 +1,7 @@
 package paciencia;
 
+import java.util.Stack;
+
 /**
  * @projeto Jogo de Cartas
  * @disciplina Padrões e Frameworks
@@ -23,14 +25,29 @@ public class Carta {
         int n = 0;
         
         novaCarta.setStatus(false);
-        n = (int) (Math.random() * 5);
+        n = (int) (Math.random() * 4+1);
         novaCarta.setNaipe(n);
-        v = (int) (Math.random() * 14);
+        v = (int) (Math.random() * 13+1);
         novaCarta.setValor(v);
 
         return novaCarta;
     }
 
+    public boolean procuraCarta(Stack<Carta> pilha, Carta c1) {
+        boolean achou = false;
+
+        for (int j = 0; j < pilha.size() - 1; j++) {
+            if ((pilha.elementAt(j).getNaipe() == c1.getNaipe()) && (pilha.elementAt(j).getValor() == c1.getValor())) {
+                //System.out.println("Achei!");
+                achou = true;
+                break;
+            } else {
+                //System.out.println("Não Achei!!!");
+                achou = false;
+            }
+        }
+        return achou;
+    }
     
     public void setNaipe(int naipe) {
         this.naipe = naipe;
