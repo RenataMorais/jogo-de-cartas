@@ -1,8 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package jogodecartas.estrutura;
+
+import jogodecartas.Baralho;
+import jogodecartas.Carta;
+import jogodecartas.core.Controller;
 
 /** Classe que define um identificador para cada conjunto de cartas e o modo de jogo que implica na forma como algumas cartas podem ser manipuladas
  *
@@ -12,23 +12,19 @@ package jogodecartas.estrutura;
  */
 public class Pilhas {
 
-    private int id;                 // Rever...
     private int gameMode;           // Modo de jogo: 1 para vira uma carta e 3 para vira 3 cartas
+    Controller controle = new Controller();
 
-    /** Identificador da Pilha
-     *
-     * @return int
-     */
-    public int getId() {
-        return id;
+    public void moveEstoqueFileira(Fileira fileiras, int id, Carta carta) {
+        if (controle.validaFileiraDestino(carta, id)) {
+            fileiras.getFileiras().get(id).push(carta);
+        }
     }
 
-    /**
-     *
-     * @param int id
-     */
-    public void setId(int id) {
-        this.id = id;
+    public void moveEstoqueFundacoes(Fundacao fundacoes, int id, Carta carta) {
+        if (controle.validaFundacaoDestino(carta, id)) {
+            fundacoes.getFundacoes().get(id).push(carta);
+        }
     }
 
     /** Define qual o modo de jogo

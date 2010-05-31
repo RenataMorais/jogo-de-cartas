@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package jogodecartas;
 
 /**
@@ -12,57 +7,60 @@ package jogodecartas;
  * @version 1.0b
  */
 public class Carta {
-    private int valor;
-    private int naipe;
-    private boolean virada; // Virada ou não
+
+    public enum Valor {
+
+        DOIS, TRES, QUATRO, CINCO, SEIS,
+        SETE, OITO, NOVE, DEZ, VALETE, DAMA, REI, AS
+    }
+
+    public enum Naipe {
+
+        OUROS(1), PAUS(2), ESPADAS(3), COPAS(4);
+        private final int valor;
+
+        Naipe(int valor) {
+            this.valor = valor;
+        }
+    }
+    private final Valor valor;
+    private final Naipe naipe;
+    private boolean virada;
+
+    public Carta(Valor valor, Naipe naipe) {
+        this.valor = valor;
+        this.naipe = naipe;
+    }
+
+    public Valor valor() {
+        return valor;
+    }
+
+    public Naipe naipe() {
+        return naipe;
+    }
+
+    @Override
+    public String toString() {
+        return valor + " of " + naipe;
+    }
 
     /** Alterna o valor do atributo virada de uma carta
      *
-     * @param Carta x       Recebe como atributo um objeto do tipo carta
+     * @param Carta x                       Recebe como atributo um objeto do tipo carta
      */
     public void vira(Carta carta) {
-        if (carta.isVirada() == false) {
-            carta.setVirada(true);
-        } else {
-            carta.setVirada(false);
-        }
+        carta.setVirada();
     }
+
     /** Retorna 0 para naipes pares e um valor diferente de zero para números ímpares
      *
-     * @param Carta carta
-     * @return int                          Valor correspondente ao Naipe: 0 se naipe par, !=0 se
+     * @return int                          Valor correspondente ao Naipe: 0 se naipe par, !=0 se ímpar
      */
-    public int naipe() {
-        return naipe % 2;
+    public int naipeColor() {
+        return naipe.valor % 2;
     }
-    /**
-    *
-    * @return int naipe
-    */
-    public int getNaipe() {
-        return naipe;
-    }
-    /**
-     *
-     * @param int naipe
-     */
-    public void setNaipe(int naipe) {
-        this.naipe = naipe;
-    }
-    /**
-     *
-     * @return int valor
-     */
-    public int getValor() {
-        return valor;
-    }
-    /**
-     *
-     * @param int valor                     Recebe um valor inteiro correspondente ao índice da carta
-     */
-    public void setValor(int valor) {
-        this.valor = valor;
-    }
+
     /**
      *
      * @return booleand virada              Retorna se a carta está virada ou não
@@ -70,12 +68,12 @@ public class Carta {
     public boolean isVirada() {
         return virada;
     }
+
     /**
      *
      * @param boolean virada
      */
-    public void setVirada(boolean virada) {
-        this.virada = virada;
+    public void setVirada() {
+        this.virada = !virada;
     }
-
 }

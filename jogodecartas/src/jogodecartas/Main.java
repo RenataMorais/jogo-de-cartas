@@ -5,9 +5,8 @@
 
 package jogodecartas;
 
-import java.util.ArrayList;
-import jogodecartas.core.paciencia.Config;
-import jogodecartas.Baralho;
+import java.util.List;
+
 
 /**
  *
@@ -19,11 +18,10 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Baralho baralho = new Baralho();
+        List<Carta> baralho = Baralho.novoBaralho();
 
-        baralho.cria();
-        baralho.embaralha();
-        baralho.mostra();
+        //Baralho.embaralha();
+        Baralho.mostra();
      
     }
 

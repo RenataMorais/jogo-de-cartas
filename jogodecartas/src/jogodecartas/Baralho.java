@@ -1,12 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package jogodecartas;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import jogodecartas.core.paciencia.Controle;
+import java.util.List;
+import jogodecartas.Carta.Naipe;
+import jogodecartas.Carta.Valor;
 
 /**
  * 
@@ -15,40 +13,53 @@ import jogodecartas.core.paciencia.Controle;
  * @version 1.0b
  */
 public class Baralho {
-    private ArrayList<Carta> baralho;
 
-    /** Cria as cartas do baralho de acordo com o jogo escolhido
-     *
-     */
-    public void cria(){
-        Controle paciencia = new Controle();
-        
-        baralho = paciencia.criaBaralho();
+    private static final List<Carta> baralho = new ArrayList<Carta>();
+
+    // Inicializa o conjunto do baralho
+    static {
+        for (Naipe naipe : Naipe.values()) {
+            for (Valor valor : Valor.values()) {
+                baralho.add(new Carta(valor, naipe) {
+                });
+            }
+        }
     }
+
+    /** Contrutor do baralho
+     *
+     * @return ArrayList<Carta>                             Cópia do baralho
+     */
+    public static ArrayList<Carta> novoBaralho() {
+        return new ArrayList<Carta>(baralho);
+    }
+
     /** Método embaralha o baralho
      *
      */
-    public void embaralha() {
+    public static void embaralha() {
         Collections.shuffle(baralho);
     }
-    /** Exibe todas as cartas do baralho
+
+    /** Exibe todas as baralho do baralho
      *
      */
-    public void mostra() {
+    public static void mostra() {
         for (int i = 0; i < baralho.size(); i++) {
-            System.out.println(baralho.get(i).getNaipe() + ", " + baralho.get(i).getValor() + ", " + baralho.get(i).isVirada());
+            System.out.println(baralho.get(i).valor() + " de " + baralho.get(i).naipe() + ": " + baralho.get(i).isVirada());
         }
     }
-    /**
+
+    /** Verifica se a carta existe no baralho
      *
      * @param Carta carta
      * @return boolean
      */
-    public boolean contem(Carta carta){
+    public boolean contem(Carta carta) {
         boolean achou = false;
 
         for (int j = 0; j < baralho.size() - 1; j++) {
-            if ((baralho.get(j).getNaipe() == carta.getNaipe()) && (baralho.get(j).getValor() == carta.getValor())) {
+            if ((baralho.get(j).naipe() == carta.naipe()) && (baralho.get(j).valor() == carta.valor())) {
                 achou = true;
                 break;
             } else {
@@ -56,19 +67,5 @@ public class Baralho {
             }
         }
         return achou;
-    }
-    /**
-     *
-     * @return ArrayList<Carta> baralho
-     */
-    public ArrayList<Carta> getBaralho() {
-        return baralho;
-    }
-    /**
-     *
-     * @param ArrayList<Carta> baralho
-     */
-    public void setBaralho(ArrayList<Carta> baralho) {
-        this.baralho = baralho;
     }
 }

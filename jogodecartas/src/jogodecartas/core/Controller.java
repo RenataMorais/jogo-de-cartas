@@ -14,10 +14,9 @@ import jogodecartas.estrutura.Fundacao;
  */
 public class Controller {
 
-    Config config = new Config();
+    GlobalConfig config = new GlobalConfig();
     Fundacao fundacoes = new Fundacao(config.getFundacoes());
     Fileira fileiras = new Fileira(config.getFundacoes());
-    Estoque estoque = new Estoque();
 
     /** Valida uma carta para ser inserida na fundação
      *
@@ -28,7 +27,7 @@ public class Controller {
     public boolean validaFundacaoDestino(Carta carta, int destino) {
         // Verifico se a pilha está cheia e se o naipe da carta corresponde ao naipe da pilha
         if ((fundacoes.getFundacoes().get(destino).size() < 13) &&
-                (fundacoes.getFundacoes().get(destino).peek().getNaipe() == carta.getNaipe())) {
+                (fundacoes.getFundacoes().get(destino).peek().naipe() == carta.naipe())) {
             return true;
         } else {
             return false;
@@ -42,7 +41,7 @@ public class Controller {
      * @return boolean                              (true) se a carta for válida, caso contrário (false)
      */
     public boolean validaFileiraDestino(Carta origem, int destino) {
-        if (origem.naipe() == fileiras.getFileiras().get(destino).peek().naipe()) {
+        if (origem.naipeColor() == 0) {
             return false;
         } else {
             return true;
@@ -63,11 +62,13 @@ public class Controller {
         }
         return true;
     }
-    /** Classe define o modo de jogo
-     *
-     * @param int modo                          Valor referente ao modo de jogo estabelecido
-     */
-    public void modoDeJogo(int modo){
-        estoque.setGameMode(modo);
+
+    public Fileira getFileiras() {
+        return fileiras;
     }
+
+    public Fundacao getFundacoes() {
+        return fundacoes;
+    }
+
 }

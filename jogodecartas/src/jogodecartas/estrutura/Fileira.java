@@ -1,6 +1,5 @@
 package jogodecartas.estrutura;
 
-import jogodecartas.*;
 import java.util.ArrayList;
 import java.util.Stack;
 import jogodecartas.Carta;
@@ -35,43 +34,14 @@ public class Fileira extends Pilhas {
      * @param int profundidade              Índice da primeira carta do conjunto de cartas da pilha que deseja-se mover
      */
     public void move(int origem, int destino, int profundidade) {
-        Stack<Carta> pilha = new Stack<Carta>();        
+        Stack<Carta> pilha = new Stack<Carta>();
 
-        if (controle.validaFileiraDestino(fileiras.get(origem).elementAt(origem), destino)) {
+        if (controle.validaFileiraDestino(fileiras.get(origem).elementAt(fileiras.get(origem).size()-profundidade), destino)) {
             for (int i = 0; i < profundidade; i++) {
-                Carta carta = new Carta();
-                carta = fileiras.get(origem).pop();
-                pilha.push(carta);
+                pilha.push(fileiras.get(origem).pop());
             }
+            fileiras.get(destino).addAll(pilha);
         }
-
-    }
-
-    /** Verifica se uma fileira é válida
-     *
-     * @param origem
-     * @param destino
-     * @return
-     */
-    @Deprecated
-    private boolean fileiraValida(Carta origem, int destino) {
-        if (origem.naipe() == fileiras.get(destino).peek().naipe()) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    /** Move uma carta entre duas fundações diferentes
-     *
-     * @param int origem
-     * @param int destino
-     * @deprecated Criei um método que move mais de uma carta entre as fileiras
-     */
-    @Deprecated
-    public void move(int origem, int destino) {
-        Carta carta = fileiras.get(origem).pop();
-        fileiras.get(destino).push(carta);
     }
 
     public ArrayList<Stack<Carta>> getFileiras() {

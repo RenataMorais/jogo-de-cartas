@@ -15,12 +15,12 @@ public class Estoque extends Pilhas {
     private Stack<Carta> descarte = new Stack<Carta>();
 
     /** Move carta do topo do estoque para o descarte
-     * 
+     *  
      */
     public void move() {
         for (int i = 0; i < getGameMode(); i++) {
-            Carta carta = this.estoque.pop();        // removo a carta do estoque
-            carta.setVirada(true);                  // viro a carta
+            Carta carta = this.estoque.pop();           // removo a carta do estoque
+            carta.setVirada();                          // viro a carta
             descarte.push(carta);
         }
     }
@@ -50,7 +50,7 @@ public class Estoque extends Pilhas {
         return estoque.addAll(descarte);
     }
 
-    /** Inverte a pilha de descarte
+    /** Inverte a pilha de descarte para restaurar a ordem correta
      *
      */
     public void inverte() {

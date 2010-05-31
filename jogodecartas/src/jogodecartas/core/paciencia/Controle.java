@@ -1,7 +1,6 @@
 package jogodecartas.core.paciencia;
 
-import java.util.ArrayList;
-import jogodecartas.Carta;
+import jogodecartas.estrutura.Estoque;
 
 /** Classe de controle do jogo Paciência
  *
@@ -11,26 +10,18 @@ import jogodecartas.Carta;
 public class Controle {
 
     Config config = new Config();
+    Estoque estoque = new Estoque();
 
-    /** Cria as cartas do Baralho
+    /** Classe define o modo de jogo
      *
-     * @return ArrayList<Carta> baralho                     Retorna uma coleção com as cartas do baralho
+     * @param int modo                          Valor referente ao modo de jogo estabelecido
      */
-    public ArrayList<Carta> criaBaralho() {
-        ArrayList<Carta> baralho = new ArrayList<Carta>();
+    public void modoDeJogo(int modo) {
+        estoque.setGameMode(modo);
+    }
 
-        for (int k = 0; k < config.getBaralhos(); k++) {
-            for (int i = 1; i <= config.getNaipes(); i++) {
-                for (int j = 1; j <= config.getCartas_naipes(); j++) {
-                    Carta carta = new Carta();
-                    carta.setNaipe(i);
-                    carta.setValor(j);
-                    carta.setVirada(false);
-                    baralho.add(carta);
-                }
-            }
-        }
-        return baralho;
+    public Estoque getEstoque() {
+        return estoque;
     }
 
 }

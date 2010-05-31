@@ -1,31 +1,23 @@
-package jogodecartas.core.paciencia;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-import jogodecartas.core.GlobalConfig;
+package jogodecartas.core;
 
-/** Classe de configuração do jogo Paciência
+/**
  *
  * @author João Carlos Nunes Bittencourt
- * @author Gabriel Sanches de Almeida
- * @version 1.0a
+ * @author Gabriel
  */
-public class Config {
-    
-    @Deprecated private static int naipes = 4;
-    @Deprecated private int cartas = 52;
-    @Deprecated private int cartas_naipes = 13;
-    private int baralhos = 1;
-    private int fundacoes = 4;
-    private int fileiras = 7;
-    private int modoDeJogo = 1;
-
-    public void setConfigs(){
-        GlobalConfig config = new GlobalConfig();
-
-        config.setBaralhos(baralhos);
-        config.setFundacoes(fundacoes);
-        config.setFileiras(fileiras);
-        config.setModoDeJogo(modoDeJogo);
-    }
+public class GlobalConfig {
+    private int naipes = 4;
+    private int cartas = 52;
+    private int cartas_naipes = 13;
+    private int baralhos;
+    private int fundacoes;
+    private int fileiras;
+    private int modoDeJogo;
 
     public int getBaralhos() {
         return baralhos;
@@ -67,14 +59,6 @@ public class Config {
         this.fundacoes = fundacoes;
     }
 
-    public int getNaipes() {
-        return naipes;
-    }
-
-    public void setNaipes(int naipes) {
-        this.naipes = naipes;
-    }
-
     public int getModoDeJogo() {
         return modoDeJogo;
     }
@@ -82,4 +66,13 @@ public class Config {
     public void setModoDeJogo(int modoDeJogo) {
         this.modoDeJogo = modoDeJogo;
     }
+
+    public int getNaipes() {
+        return naipes;
+    }
+
+    public void setNaipes(int naipes) {
+        this.naipes = naipes;
+    }
+    
 }
