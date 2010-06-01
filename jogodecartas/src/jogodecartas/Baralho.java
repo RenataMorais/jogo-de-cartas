@@ -14,10 +14,10 @@ import jogodecartas.Carta.Valor;
  */
 public class Baralho {
 
-    private static final List<Carta> baralho = new ArrayList<Carta>();
+    private final List<Carta> baralho = new ArrayList<Carta>(); // Verificar o atributo estático. Se ele gera mais de um baralho
 
     // Inicializa o conjunto do baralho
-    static {
+    public Baralho(){
         for (Naipe naipe : Naipe.values()) {
             for (Valor valor : Valor.values()) {
                 baralho.add(new Carta(valor, naipe) {
@@ -25,26 +25,38 @@ public class Baralho {
             }
         }
     }
+//    static {
+//        for (Naipe naipe : Naipe.values()) {
+//            for (Valor valor : Valor.values()) {
+//                baralho.add(new Carta(valor, naipe) {
+//                });
+//            }
+//        }
+//    }
 
     /** Contrutor do baralho
      *
      * @return ArrayList<Carta>                             Cópia do baralho
      */
-    public static ArrayList<Carta> novoBaralho() {
+    public ArrayList<Carta> novoBaralho() {
         return new ArrayList<Carta>(baralho);
     }
 
     /** Método embaralha o baralho
      *
      */
-    public static void embaralha() {
+    public void embaralha() {
         Collections.shuffle(baralho);
+    }
+
+    public Carta removeCarta(int indice){
+        return baralho.remove(indice);
     }
 
     /** Exibe todas as baralho do baralho
      *
      */
-    public static void mostra() {
+    public void mostraBaralho() { // mudar para toString()
         for (int i = 0; i < baralho.size(); i++) {
             System.out.println(baralho.get(i).valor() + " de " + baralho.get(i).naipe() + ": " + baralho.get(i).isVirada());
         }
@@ -67,5 +79,9 @@ public class Baralho {
             }
         }
         return achou;
+    }
+
+    public List<Carta> getBaralho() {
+        return baralho;
     }
 }

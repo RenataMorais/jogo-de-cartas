@@ -1,9 +1,6 @@
 package jogodecartas.estrutura;
 
 import java.util.ArrayList;
-import java.util.Stack;
-import jogodecartas.Carta;
-import jogodecartas.core.Controller;
 
 /**
  *
@@ -13,42 +10,31 @@ import jogodecartas.core.Controller;
  */
 public class Fileira extends Pilhas {
 
-    private ArrayList<Stack<Carta>> fileiras;
-    Controller controle = new Controller();
+    private ArrayList<Pilhas> fileiras;
 
     /** Método cria um ArrayList de Pilhas que representam as Fileiras de um jogo de cartas
      *
      * @param int quantidade                            Informe a quantidade de fileiras que deseja criar
      */
     public Fileira(int quantidade) {
-        fileiras = new ArrayList<Stack<Carta>>();
+        fileiras = new ArrayList<Pilhas>();
         for (int i = 0; i < quantidade; i++) {
-            fileiras.add(new Stack<Carta>());
+            fileiras.add(new Pilhas());
         }
     }
 
-    /** Move um conjunto de cartas entre as fundações
-     *
-     * @param int origem                    Fundação de origem
-     * @param int destino                   Fundação de destino
-     * @param int profundidade              Índice da primeira carta do conjunto de cartas da pilha que deseja-se mover
-     */
-    public void move(int origem, int destino, int profundidade) {
-        Stack<Carta> pilha = new Stack<Carta>();
-
-        if (controle.validaFileiraDestino(fileiras.get(origem).elementAt(fileiras.get(origem).size()-profundidade), destino)) {
-            for (int i = 0; i < profundidade; i++) {
-                pilha.push(fileiras.get(origem).pop());
-            }
-            fileiras.get(destino).addAll(pilha);
+    public void mostraFileira(int id) {
+        System.out.print("Fileira " + id + ": ");
+        for (int i = 0; i < fileiras.get(id).size(); i++) {
+            System.out.print(fileiras.get(id).get(i));
         }
     }
 
-    public ArrayList<Stack<Carta>> getFileiras() {
+    public ArrayList<Pilhas> getFileiras() {
         return fileiras;
     }
 
-    public void setFileiras(ArrayList<Stack<Carta>> fileiras) {
+    public void setFileiras(ArrayList<Pilhas> fileiras) {
         this.fileiras = fileiras;
     }
 }

@@ -9,23 +9,29 @@ import jogodecartas.core.GlobalConfig;
  * @version 1.0a
  */
 public class Config {
-    
-    @Deprecated private static int naipes = 4;
-    @Deprecated private int cartas = 52;
-    @Deprecated private int cartas_naipes = 13;
+
     private int baralhos = 1;
     private int fundacoes = 4;
     private int fileiras = 7;
     private int modoDeJogo = 1;
+    GlobalConfig config = new GlobalConfig();
 
-    public void setConfigs(){
-        GlobalConfig config = new GlobalConfig();
-
+    public Config() {
         config.setBaralhos(baralhos);
         config.setFundacoes(fundacoes);
         config.setFileiras(fileiras);
         config.setModoDeJogo(modoDeJogo);
     }
+
+    /** Configuração inicial do jogo paciência
+     *
+     */
+//    public void setConfigs() {
+//        config.setBaralhos(baralhos);
+//        config.setFundacoes(fundacoes);
+//        config.setFileiras(fileiras);
+//        config.setModoDeJogo(modoDeJogo);
+//    }
 
     public int getBaralhos() {
         return baralhos;
@@ -33,22 +39,6 @@ public class Config {
 
     public void setBaralhos(int baralhos) {
         this.baralhos = baralhos;
-    }
-
-    public int getCartas() {
-        return cartas;
-    }
-
-    public void setCartas(int cartas) {
-        this.cartas = cartas;
-    }
-
-    public int getCartas_naipes() {
-        return cartas_naipes;
-    }
-
-    public void setCartas_naipes(int cartas_naipes) {
-        this.cartas_naipes = cartas_naipes;
     }
 
     public int getFileiras() {
@@ -65,14 +55,6 @@ public class Config {
 
     public void setFundacoes(int fundacoes) {
         this.fundacoes = fundacoes;
-    }
-
-    public int getNaipes() {
-        return naipes;
-    }
-
-    public void setNaipes(int naipes) {
-        this.naipes = naipes;
     }
 
     public int getModoDeJogo() {

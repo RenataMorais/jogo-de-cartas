@@ -1,19 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package jogodecartas.core;
 
 /**
  *
  * @author João Carlos Nunes Bittencourt
- * @author Gabriel
+ * @author Gabriel Sanches de Almeida
  */
 public class GlobalConfig {
     private int naipes = 4;
     private int cartas = 52;
-    private int cartas_naipes = 13;
+    private int cartaPorNaipe = 13;
     private int baralhos;
     private int fundacoes;
     private int fileiras;
@@ -35,12 +30,12 @@ public class GlobalConfig {
         this.cartas = cartas;
     }
 
-    public int getCartas_naipes() {
-        return cartas_naipes;
+    public int getCartasPorNaipe() {
+        return cartaPorNaipe;
     }
 
-    public void setCartas_naipes(int cartas_naipes) {
-        this.cartas_naipes = cartas_naipes;
+    public void setCartasPorNaipes(int cartaPorNaipe) {
+        this.cartaPorNaipe = cartaPorNaipe;
     }
 
     public int getFileiras() {

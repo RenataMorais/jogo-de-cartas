@@ -3,6 +3,7 @@ package jogodecartas.estrutura;
 import java.util.ArrayList;
 import java.util.Stack;
 import jogodecartas.Carta;
+import jogodecartas.core.GlobalConfig;
 
 /** Classe que manipula as fundações do jogo identificando o naipe e preenchendo as estruturas em ordem ascendente
  *
@@ -10,20 +11,19 @@ import jogodecartas.Carta;
  * @author Gabriel Sanches de Almeida
  * @version 1.0a
  */
+// Inplementar Mover da fundação para fileira
 public class Fundacao extends Pilhas {
 
-    private ArrayList<Stack<Carta>> fundacoes;
-    private int naipe;
-    private boolean cheia; // (true) cheia (false) vazia
+    private ArrayList<Pilhas> fundacoes;
 
     /** Contrutor da classe, cria um ArrayList de objetos Stack, representando as Fundações
      *
      * @param quantidade
      */
     public Fundacao(int quantidade) {
-        fundacoes = new ArrayList<Stack<Carta>>();
+        fundacoes = new ArrayList<Pilhas>();
         for (int i = 0; i < quantidade; i++) {
-            fundacoes.add(new Stack<Carta>());
+            fundacoes.add(new Pilhas());
         }
     }
 
@@ -36,6 +36,9 @@ public class Fundacao extends Pilhas {
     public void add(Carta carta, int destino) {
         if (controle.validaFundacaoDestino(carta, destino)) {
             fundacoes.get(destino).push(carta);
+        }
+        if(fundacoes.get(destino).size() < config.getCartasPorNaipe()) {
+            fundacoes.get(destino).setCheia(true);
         }
     }
 
@@ -56,7 +59,7 @@ public class Fundacao extends Pilhas {
      * 
      * @return ArrayList<Stack<Carta>>
      */
-    public ArrayList<Stack<Carta>> getFundacoes() {
+    public ArrayList<Pilhas> getFundacoes() {
         return fundacoes;
     }
 
@@ -64,39 +67,7 @@ public class Fundacao extends Pilhas {
      *
      * @param ArrayList<Stack<Carta>> fundações
      */
-    public void setFundacoes(ArrayList<Stack<Carta>> fundacoes) {
+    public void setFundacoes(ArrayList<Pilhas> fundacoes) {
         this.fundacoes = fundacoes;
-    }
-
-    /**
-     *
-     * @return int
-     */
-    public int getNaipe() {
-        return naipe;
-    }
-
-    /**
-     *
-     * @param int naipe
-     */
-    public void setNaipe(int naipe) {
-        this.naipe = naipe;
-    }
-
-    /** Retorna se a pilha está completa (true) ou incompleta (false)
-     *
-     * @return boolean
-     */
-    public boolean isCheia() {
-        return cheia;
-    }
-
-    /** Define se uma pilha de fundações está completa
-     *
-     * @param boolena cheia
-     */
-    public void setCheia(boolean cheia) {
-        this.cheia = cheia;
     }
 }

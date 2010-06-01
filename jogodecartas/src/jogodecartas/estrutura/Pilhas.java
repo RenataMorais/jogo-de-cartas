@@ -1,45 +1,44 @@
 package jogodecartas.estrutura;
 
-import jogodecartas.Baralho;
+import java.util.ArrayList;
+import java.util.Stack;
 import jogodecartas.Carta;
-import jogodecartas.core.Controller;
+import jogodecartas.core.GlobalConfig;
+import jogodecartas.core.RegrasGlobais;
 
 /** Classe que define um identificador para cada conjunto de cartas e o modo de jogo que implica na forma como algumas cartas podem ser manipuladas
  *
  * @author João Carlos Nunes Bittencourt
- * @author Gabriel
+ * @author Gabriel Sanches de Almeida
  * @version 1.0a
  */
-public class Pilhas {
+public class Pilhas extends Stack<Carta> {
 
-    private int gameMode;           // Modo de jogo: 1 para vira uma carta e 3 para vira 3 cartas
-    Controller controle = new Controller();
+    private boolean cheia;
+    RegrasGlobais controle;
+    GlobalConfig config;
 
-    public void moveEstoqueFileira(Fileira fileiras, int id, Carta carta) {
-        if (controle.validaFileiraDestino(carta, id)) {
-            fileiras.getFileiras().get(id).push(carta);
-        }
-    }
 
-    public void moveEstoqueFundacoes(Fundacao fundacoes, int id, Carta carta) {
-        if (controle.validaFundacaoDestino(carta, id)) {
-            fundacoes.getFundacoes().get(id).push(carta);
-        }
-    }
-
-    /** Define qual o modo de jogo
+    /** Retorna se a fileira está vazia ou não
      *
-     * @return int                      Valor correspondente ao modo de jogo
+     * @param int destino                   Identificador da fileira de origem
+     * @return boolean                      (true) fileira está vazia. (false) fileira não está vazia
      */
-    public int getGameMode() {
-        return gameMode;
+    public boolean isEmpty(int destino) {
+        return this.isEmpty();
     }
 
-    /** O modo de jogo indica quantas cartas do descarte serão viradas
-     *
-     * @param int gameMode
-     */
-    public void setGameMode(int gameMode) {
-        this.gameMode = gameMode;
+    public boolean isFull() {
+        return cheia;
     }
+
+    public void setCheia(boolean cheia) {
+        this.cheia = cheia;
+    }
+
+    public int posicao(int pilha, int profundidade){
+        return this.size() - profundidade;
+    }
+
+    
 }

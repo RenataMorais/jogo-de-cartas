@@ -1,27 +1,38 @@
 package jogodecartas.core.paciencia;
 
+import java.util.Stack;
+import jogodecartas.Baralho;
+import jogodecartas.core.ControladorGlobal;
 import jogodecartas.estrutura.Estoque;
+import jogodecartas.estrutura.Pilhas;
 
 /** Classe de controle do jogo Paciência
  *
  * @author João Carlos Nunes Bittencourt
  * @author Gabriel Sanches de Almeida
  */
-public class Controle {
+public class Controle extends ControladorGlobal {
 
-    Config config = new Config();
-    Estoque estoque = new Estoque();
+    public Estoque estoque = new Estoque();
+    ControladorGlobal global;
 
-    /** Classe define o modo de jogo
-     *
-     * @param int modo                          Valor referente ao modo de jogo estabelecido
-     */
-    public void modoDeJogo(int modo) {
-        estoque.setGameMode(modo);
+    public void distribuiCartas(Baralho baralho){
+        //global.getConfig().setFileiras(7);
+        //System.out.println(global.getConfig().getFileiras());
+        for (int i = 0; i < 7; i++){
+            for (int j = 0; j < i+1; j++){
+                getFilas().getFileiras().get(i).push(baralho.getBaralho().remove(j));
+            }
+        }
+        Pilhas pilha = new Pilhas();
+        
+        pilha.addAll(baralho.getBaralho());
+        baralho.getBaralho().clear();
+        estoque.setEstoque(pilha);
     }
 
-    public Estoque getEstoque() {
-        return estoque;
+    public Pilhas getEstoque() {
+        return getEstoque();
     }
 
 }
