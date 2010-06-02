@@ -35,13 +35,16 @@ public class Estoque extends Pilhas {
     public void moveToDescarte() {
         // viro as cartas que já estão no descarte ( Papel da Interface )
         for (int j = 0; j < descarte.size(); j++) {
-            descarte.elementAt(j).setVirada();
+            if (descarte.get(j).isVirada()) {
+                descarte.get(j).setVirada();
+            }
         }
+//        System.out.println(config.getModoDeJogo());
         // movo cartas do estoque para o descarte
-        for (int i = 0; i < config.getModoDeJogo(); i++) {
-            Carta carta = this.estoque.pop();               // removo a carta do estoque
-            carta.setVirada();                              // viro a carta
-            descarte.push(carta);                           // adiciono carta virada no descarte
+        for (int i = 0; i < 1; i++) {
+            Carta carta = this.estoque.pop();                   // removo a carta do estoque
+            carta.setVirada();                                  // viro a carta
+            this.descarte.push(carta);                          // adiciono carta virada no descarte
         }
     }
 
