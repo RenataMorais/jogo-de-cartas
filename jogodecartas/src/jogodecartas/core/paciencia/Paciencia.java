@@ -21,11 +21,11 @@ public class Paciencia {
         baralho.novoBaralho();
         baralho.embaralha();
         //baralho.mostraBaralho();
-        controle.setConfigs();
         controle.distribuiCartas(baralho);
+        controle.alternaModoDeJogo(1);
 //        System.out.println("Fileiras:");
-//        for (int i = 0; i < controle.getConfig().getFileiras(); i++) {
-//            controle.getFilas().mostraFileira(i);
+//        for (int i = 0; i < controle.global.getConfig().getFileiras(); i++) {
+//            controle.global.getControleFileiras().mostraFileira(i);
 //            System.out.println("");
 //        }
         baralho.mostraBaralho(); // baralho está vazio

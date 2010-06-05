@@ -1,9 +1,7 @@
 package jogodecartas.estrutura;
 
 import java.util.ArrayList;
-import java.util.Stack;
 import jogodecartas.Carta;
-import jogodecartas.core.GlobalConfig;
 
 /** Classe que manipula as fundações do jogo identificando o naipe e preenchendo as estruturas em ordem ascendente
  *
@@ -27,20 +25,20 @@ public class Fundacao extends Pilhas {
         }
     }
 
-    /** Aciciona uma carta na fundação
-     *
-     * @param Carta carta                       Carta a ser inserida
-     * @param int destino                       Identificador da fundação de destino
-     * @return boolean                          (true) se a carta for inserida na fundação, caso contrário (false)
-     */
-    public void add(Carta carta, int destino) {
-        if (controle.validaFundacaoDestino(carta, destino)) {
-            fundacoes.get(destino).push(carta);
-        }
-        if(fundacoes.get(destino).size() < config.getCartasPorNaipe()) {
-            fundacoes.get(destino).setCheia(true);
-        }
-    }
+//    /** Aciciona uma carta na fundação
+//     *
+//     * @param Carta carta                       Carta a ser inserida
+//     * @param int destino                       Identificador da fundação de destino
+//     * @return boolean                          (true) se a carta for inserida na fundação, caso contrário (false)
+//     */
+//    public void add(Carta carta, int destino) {
+//        //if (controle.validaFundacaoDestino(carta, destino, this.fundacoes)) {
+//            fundacoes.get(destino).push(carta);
+//        //}
+//        if(fundacoes.get(destino).size() < config.getCartasPorNaipe()) {
+//            fundacoes.get(destino).setCheia(true);
+//        }
+//    }
 
     /** Retorna se a pilha da fundação está cheia
      *
