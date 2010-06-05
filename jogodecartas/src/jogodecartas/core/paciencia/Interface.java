@@ -176,17 +176,45 @@ public class Interface {
         int origem = Integer.parseInt(a);
         int destino = Integer.parseInt(b);
 
-        //if (origem == 0 && (destino >= 1 && destino <= 4)) {
-            int verify = controle.getControleGlobal().moveDescarteFundacoes(controle.getpilhaDeEstoque(), destino);
-            if(verify == -1) {
-                System.out.println("\nATENÇÃO! Pilha de descarte vazia! Mova uma carta do estoque primeiro.");
-            } else if (verify == 1) {
-                System.out.println("\nATENÇÃO! Carta inválida para esta fundação! Tente novamente.");
-            } else if (verify == 0) {
-                System.out.println("\nCarta movida com sucesso!");
-            }
-        //}
+        if (origem == 0 && (destino >= 1 && destino <= 4)) {
+            movimentaDescarteToFundacao(destino - 1);
+        } else if (origem == 0 && (destino >= 5 && destino <= 11)) {
+            movimentaDecarteToFileira(destino - 5);
+        } else {
+            System.out.println("Opção Inválida!");
             controle.telaPrincipal(controle);
+        }
     }
 
+    public void movimentaDescarteToFundacao(int destino) {
+        int verify = controle.getControleGlobal().moveDescarteFundacoes(controle.getpilhaDeEstoque(), destino);
+        if (verify == -1) {
+            System.out.println("\nATENÇÃO! Pilha de descarte vazia! Mova uma carta do estoque primeiro.");
+        } else if (verify == 1) {
+            System.out.println("\nATENÇÃO! Carta inválida para esta fundação! Tente novamente.");
+        } else if (verify == 0) {
+            if (!controle.getpilhaDeEstoque().getDescarte().isEmpty()) {
+                controle.getpilhaDeEstoque().getDescarte().peek().setVirada();
+            }
+            System.out.println("\nCarta movida com sucesso!");
+
+        }
+        controle.telaPrincipal(controle);
+    }
+
+    public void movimentaDecarteToFileira(int destino) {
+        int verify = controle.getControleGlobal().moveDescarteFileira(controle.getpilhaDeEstoque(), destino);
+
+        if (verify == -1) {
+            System.out.println("\nATENÇÃO! Pilha de descarte vazia! Mova uma carta do estoque primeiro.");
+        } else if (verify == 1) {
+            System.out.println("\nATENÇÃO! Carta inválida para esta fileira! Tente novamente.");
+        } else if (verify == 0) {
+             if (!controle.getpilhaDeEstoque().getDescarte().isEmpty()) {
+                controle.getpilhaDeEstoque().getDescarte().peek().setVirada();
+            }
+            System.out.println("\nCarta movida com sucesso!");
+        }
+        controle.telaPrincipal(controle);
+    }
 }

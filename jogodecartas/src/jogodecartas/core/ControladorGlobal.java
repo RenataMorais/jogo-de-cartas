@@ -46,10 +46,21 @@ public class ControladorGlobal {
      *
      * @param estoque                       estoque de cartas
      * @param idFileira                     índice do vetor que contém a fileira de destino
+     * @return                              <code>-1</code> caso a pilha de descarte esteja vazia;
+     *                                      <code>1</code> caso a movimentação não seja válida;
+     *                                      <code>0</code> se a carta foi movida para a fundação
+     *                                      com sucesso.
      */
-    public void moveDescarteFileira(Estoque descarte, int idFileira) {
-        if (regras.validaFileiraDestino(descarte.getDescarte().peek(), controleFileiras.getFileiras().get(idFileira))) {
-            controleFileiras.getFileiras().get(idFileira).push(descarte.getDescarte().pop());
+    public int moveDescarteFileira(Estoque descarte, int idFileira) {
+        if (descarte.getDescarte().isEmpty()) {
+            return -1;
+        } else {
+            if (regras.validaFileiraDestino(descarte.getDescarte().peek(), controleFileiras.getFileiras().get(idFileira))) {
+                controleFileiras.getFileiras().get(idFileira).push(descarte.getDescarte().pop());
+                return 0;
+            } else {
+                return 1;
+            }
         }
     }
 
@@ -122,8 +133,9 @@ public class ControladorGlobal {
      * @param fundacao                      índice do vetor que contém a fundação
      */
     public void moveFileiraToFundacao(int fileira, int fundacao) {
-        //if (regras.validaFundacaoDestino(controleFileiras.getFileiras().get(fileira).peek(), fundacao)) {
-        //}
+        if (regras.validaFundacaoDestino(controleFileiras.getFileiras().get(fileira).peek(), controleFundacoes.getFundacoes().get(fundacao))) {
+            controleFundacoes.getFundacoes().get(fundacao).push(controleFileiras.getFileiras().get(fileira).pop());
+        }
     }
 
     /** 
