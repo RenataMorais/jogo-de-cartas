@@ -8,7 +8,6 @@ import java.io.InputStreamReader;
  * Classe responsável por implementar os métodos de exibição do sistema
  *
  * @author João Carlos Nunes Bittencourt
- * @author Gabriel Sanches de Almeida
  */
 public class Interface {
 
@@ -175,14 +174,35 @@ public class Interface {
     public void seletorDeMovimentacao(String a, String b) {
         int origem = Integer.parseInt(a);
         int destino = Integer.parseInt(b);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String input = new String();
 
-        if (origem == 0 && (destino >= 1 && destino <= 4)) {
-            movimentaDescarteToFundacao(destino - 1);
-        } else if (origem == 0 && (destino >= 5 && destino <= 11)) {
-            movimentaDecarteToFileira(destino - 5);
-        } else {
-            System.out.println("Opção Inválida!");
+        if (origem == destino) {
+            System.out.println("ATENÇÃO! A pilha onde a carte se encontra deve ser diferente do local onde deseja mover a carta.");
             controle.telaPrincipal(controle);
+        } else {
+            if (origem == 0 && (destino >= 1 && destino <= 4)) {
+                movimentaDescarteToFundacao(destino - 1);
+            } else if (origem == 0 && (destino >= 5 && destino <= 11)) {
+                movimentaDecarteToFileira(destino - 5);
+            } else if ((origem >= 5 && origem <= 11) && (destino >= 5 && destino <= 11)) {
+                System.out.println("Quantas cartas desta fileira deseja mover: ");
+                try {
+                    input = reader.readLine();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                String deep = input;
+                int profundidade = Integer.parseInt(deep);
+                movimentaFileiraToFileira(origem - 5, destino - 5, profundidade);
+            } else if ((origem >= 5 && origem <= 11) && (destino >= 1 && destino <= 4)) {
+                movimentaFileiraToFundacao(origem - 5, destino - 1);
+            } else if((origem >= 1 && origem <= 4) && (destino >= 5 && destino <= 11)) {
+
+            } else {
+                System.out.println("Opção Inválida!");
+                controle.telaPrincipal(controle);
+            }
         }
     }
 
@@ -210,9 +230,54 @@ public class Interface {
         } else if (verify == 1) {
             System.out.println("\nATENÇÃO! Carta inválida para esta fileira! Tente novamente.");
         } else if (verify == 0) {
-             if (!controle.getpilhaDeEstoque().getDescarte().isEmpty()) {
+            if (!controle.getpilhaDeEstoque().getDescarte().isEmpty()) {
                 controle.getpilhaDeEstoque().getDescarte().peek().setVirada();
             }
+            System.out.println("\nCarta movida com sucesso!");
+        }
+        controle.telaPrincipal(controle);
+    }
+
+    public void movimentaFileiraToFileira(int origem, int destino, int profundidade) {
+        int verify = controle.getControleGlobal().moveFileiraToFileira(origem, destino, profundidade);
+
+        if (verify == -1) {
+            System.out.println("\nATENÇÃO! A fileira está vazia vazia.");
+        } else if (verify == 1) {
+            System.out.println("\nATENÇÃO! Carta inválida para esta fileira! Tente novamente.");
+        } else if (verify == 0) {
+            if (!controle.getControleGlobal().getControleFileiras().getFileiras().get(origem).isEmpty() && !controle.getControleGlobal().getControleFileiras().getFileiras().get(origem).peek().isVirada()) {
+                controle.getControleGlobal().getControleFileiras().getFileiras().get(origem).peek().setVirada();
+            }
+            System.out.println("\nCarta movida com sucesso!");
+        }
+        controle.telaPrincipal(controle);
+    }
+
+    public void movimentaFileiraToFundacao(int origem, int destino){
+        int verify = controle.getControleGlobal().moveFileiraToFundacao(origem, destino);
+
+        if (verify == -1) {
+            System.out.println("\nATENÇÃO! Pilha de descarte vazia! Mova uma carta do estoque primeiro.");
+        } else if (verify == 1) {
+            System.out.println("\nATENÇÃO! Carta inválida para esta fileira! Tente novamente.");
+        } else if (verify == 0) {
+            if (!controle.getControleGlobal().getControleFileiras().getFileiras().get(origem).isEmpty() && !controle.getControleGlobal().getControleFileiras().getFileiras().get(origem).peek().isVirada()) {
+                controle.getControleGlobal().getControleFileiras().getFileiras().get(origem).peek().setVirada();
+            }
+            System.out.println("\nCarta movida com sucesso!");
+        }
+        controle.telaPrincipal(controle);
+    }
+
+    public void movimentaFundacaoToFileira(int origem, int destino){
+        int verify = controle.getControleGlobal().moveFundacaoToFileira(origem, destino);
+
+        if (verify == -1) {
+            System.out.println("\nATENÇÃO! Fundação vazia.");
+        } else if (verify == 1) {
+            System.out.println("\nATENÇÃO! Carta inválida para esta fileira! Tente novamente.");
+        } else if (verify == 0) {
             System.out.println("\nCarta movida com sucesso!");
         }
         controle.telaPrincipal(controle);

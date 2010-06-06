@@ -92,10 +92,20 @@ public class ControladorGlobal {
      *
      * @param int idFundacao                índice do vetor que contém a fundação
      * @param int idFileira                 índice do vetor que contém a fileira
+     * @return                              <code>-1</code> caso a fundacao esteja vazia;
+     *                                      <code>1</code> caso a movimentação não seja válida;
+     *                                      <code>0</code> se a carta foi movida com sucesso.
      */
-    public void moveFundacaoToFileira(int fundacao, int fileira) {
-        if (regras.validaFileiraDestino(controleFundacoes.getFundacoes().get(fundacao).peek(), controleFileiras.getFileiras().get(fileira))) {
-            controleFileiras.getFileiras().get(fileira).push(controleFundacoes.getFundacoes().get(fundacao).pop());
+    public int moveFundacaoToFileira(int fundacao, int fileira) {
+        if (controleFundacoes.getFundacoes().get(fundacao).isEmpty()) {
+            return -1;
+        } else {
+            if (regras.validaFileiraDestino(controleFundacoes.getFundacoes().get(fundacao).peek(), controleFileiras.getFileiras().get(fileira))) {
+                controleFileiras.getFileiras().get(fileira).push(controleFundacoes.getFundacoes().get(fundacao).pop());
+                return 0;
+            } else {
+                return 1;
+            }
         }
     }
 
@@ -106,22 +116,29 @@ public class ControladorGlobal {
      * @param destino                       ínidice do vetor que contém a fileira destino
      * @param profundidade                  quantidade de cartas, a partir do topo da pilha
      *                                      que devem ser transferidas para fileira de
-     *                                      destino
+     *                                      destino.
+     * @return                              <code>-1</code> caso a fileira de origem esteja vazia;
+     *                                      <code>1</code> caso a movimentação não seja válida;
+     *                                      <code>0</code> se a carta foi movida para com sucesso.
      */
-    public void moveFileiraToFileira(int origem, int destino, int profundidade) {
+    public int moveFileiraToFileira(int origem, int destino, int profundidade) {
         Stack<Carta> pilha = new Stack<Carta>();
 
-        int posicao = controleFileiras.getFileiras().get(origem).posicao(origem, profundidade); //controleFileiras.getFileiras().get(origem).size() - profundidade;
-        // Valida a fileira comparando o destino com a carta presente na posição definida pela profundidade
-        if (regras.validaFileiraDestino(controleFileiras.getFileiras().get(origem).elementAt(posicao), controleFileiras.getFileiras().get(destino))) {
-            //controleFileiras.getFileiras().get(destino).push(controleFileiras.getFileiras().get(origem).pop());
-            for (int i = 0; i < profundidade; i++) {
-                pilha.push(controleFileiras.getFileiras().get(origem).pop());
-            }
-            controleFileiras.getFileiras().get(destino).addAll(pilha);
-            // Se a última carta não estiver virada, vire
-            if (!controleFileiras.getFileiras().get(origem).peek().isVirada()) {
-                controleFileiras.getFileiras().get(origem).peek().setVirada();
+        if (controleFileiras.getFileiras().get(origem).isEmpty()) {
+            return -1;
+        } else {
+            int posicao = controleFileiras.getFileiras().get(origem).posicao(origem, profundidade); //controleFileiras.getFileiras().get(origem).size() - profundidade;
+            // Valida a fileira comparando o destino com a carta presente na posição definida pela profundidade
+            if (regras.validaFileiraDestino(controleFileiras.getFileiras().get(origem).elementAt(posicao), controleFileiras.getFileiras().get(destino))) {
+                //controleFileiras.getFileiras().get(destino).push(controleFileiras.getFileiras().get(origem).pop());
+                for (int i = 0; i < profundidade; i++) {
+                    pilha.push(controleFileiras.getFileiras().get(origem).pop());
+                }
+                controleFileiras.getFileiras().get(destino).addAll(pilha);
+                // Se a última carta não estiver virada, vire
+                return 0;
+            } else {
+                return 1;
             }
         }
     }
@@ -131,10 +148,20 @@ public class ControladorGlobal {
      *
      * @param fileira                       índice do vetor que contém a fileira de origem
      * @param fundacao                      índice do vetor que contém a fundação
+     * @return                              <code>-1</code> caso a fileira de origem esteja vazia;
+     *                                      <code>1</code> caso a movimentação não seja válida;
+     *                                      <code>0</code> se a carta foi movida para com sucesso.
      */
-    public void moveFileiraToFundacao(int fileira, int fundacao) {
-        if (regras.validaFundacaoDestino(controleFileiras.getFileiras().get(fileira).peek(), controleFundacoes.getFundacoes().get(fundacao))) {
-            controleFundacoes.getFundacoes().get(fundacao).push(controleFileiras.getFileiras().get(fileira).pop());
+    public int moveFileiraToFundacao(int fileira, int fundacao) {
+        if (controleFileiras.getFileiras().get(fileira).isEmpty()) {
+            return -1;
+        } else {
+            if (regras.validaFundacaoDestino(controleFileiras.getFileiras().get(fileira).peek(), controleFundacoes.getFundacoes().get(fundacao))) {
+                controleFundacoes.getFundacoes().get(fundacao).push(controleFileiras.getFileiras().get(fileira).pop());
+                return 0;
+            } else {
+                return 1;
+            }
         }
     }
 
@@ -144,8 +171,7 @@ public class ControladorGlobal {
      *                                      <code>false</code> caso contrário.
      */
     public boolean completou() {
-        for (int i = 0; i <
-                controleFundacoes.getFundacoes().size(); i++) {
+        for (int i = 0; i < controleFundacoes.getFundacoes().size(); i++) {
             if (controleFundacoes.getFundacoes().get(i).size() == config.getCartasPorNaipe()) {
                 continue;
             } else {
