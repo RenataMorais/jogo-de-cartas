@@ -1,10 +1,12 @@
 package jogodecartas;
 
 /**
- * 
+ * Uma carta é o elemento básico de um jogo de cartas. Essa classe implementa
+ * as cartas de um jogo definindo naipes e valores a partir das definições
+ * originais do jogo.
+ *
  * @author João Carlos Nunes Bittencourt
- * @author Gabriel Sanches de Almeida
- * @version 1.0b
+ * @version 2.0b
  */
 public class Carta {
 
@@ -54,7 +56,7 @@ public class Carta {
 
     /** Alterna o peso do atributo virada de uma carta
      *
-     * @param Carta x                       Recebe como atributo um objeto do tipo carta
+     * @param carta                        Recebe como atributo um objeto do tipo carta
      */
     public void vira(Carta carta) {
         carta.setVirada();
@@ -62,27 +64,33 @@ public class Carta {
 
     /** Retorna 0 para naipes pares e um peso diferente de zero para números ímpares
      *
-     * @return int                          Valor correspondente ao Naipe: 0 se naipe par, !=0 se ímpar
+     * @return int                          Valor correspondente ao Naipe: 0 se naipe vermelho, 1 se preto
      */
     public int naipeColor() {
         return naipe.valor % 2;
     }
 
+    /**
+     * Identifica o valor correspondente de uma carta qualquer.
+     *
+     * @return               valor da carta
+     */
     public int cartaValor() {
         return valor.peso;
     }
 
     /**
+     * Retorna se uma carta está virada ou não
      *
-     * @return booleand virada              Retorna se a carta está virada ou não
+     * @return               <code>true</code>a  carta está virada
+     *                       <code>false</code> caso contrário
      */
     public boolean isVirada() {
         return virada;
     }
 
     /**
-     *
-     * @param boolean virada
+     * Vira uma carta
      */
     public void setVirada() {
         this.virada = !virada;

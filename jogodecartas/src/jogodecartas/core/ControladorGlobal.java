@@ -44,7 +44,7 @@ public class ControladorGlobal {
     /** 
      * Move a carta do topo do estoque para uma fileira
      *
-     * @param estoque                       estoque de cartas
+     * @param descarte                       estoque de cartas
      * @param idFileira                     índice do vetor que contém a fileira de destino
      * @return                              <code>-1</code> caso a pilha de descarte esteja vazia;
      *                                      <code>1</code> caso a movimentação não seja válida;
@@ -67,12 +67,12 @@ public class ControladorGlobal {
     /** 
      * Move a carta do topo do estoque para uma fundação
      * 
-     * @param estoque                       estoque de cartas
-     * @param idFileira                     índice do vetor que contém a fileira de destino
-     * @return                              <code>-1</code> caso a pilha de descarte esteja vazia;
-     *                                      <code>1</code> caso a movimentação não seja válida;
-     *                                      <code>0</code> se a carta foi movida para a fundação
-     *                                      com sucesso.
+     * @param descarte                       estoque de cartas
+     * @param idFundacao                     índice do vetor que contém a fileira de destino
+     * @return                               <code>-1</code> caso a pilha de descarte esteja vazia;
+     *                                       <code>1</code> caso a movimentação não seja válida;
+     *                                       <code>0</code> se a carta foi movida para a fundação
+     *                                       com sucesso.
      */
     public int moveDescarteFundacoes(Estoque descarte, int idFundacao) {
         if (descarte.getDescarte().isEmpty()) {
@@ -90,8 +90,8 @@ public class ControladorGlobal {
     /** 
      * Move carta de uma fundação para uma fileira
      *
-     * @param int idFundacao                índice do vetor que contém a fundação
-     * @param int idFileira                 índice do vetor que contém a fileira
+     * @param fundacao                      índice do vetor que contém a fundação
+     * @param fileira                       índice do vetor que contém a fileira
      * @return                              <code>-1</code> caso a fundacao esteja vazia;
      *                                      <code>1</code> caso a movimentação não seja válida;
      *                                      <code>0</code> se a carta foi movida com sucesso.

@@ -5,9 +5,9 @@ import jogodecartas.Carta;
 /**
  * Estoque é uma classe que representa o conjunto de cartas utilizadas
  * para armazenar cartas que podem ser utilizadas livremente no decorrer
- * do jogo. Esta estrutura consiste de dois objetos do tipo {@link #super}
- * que representam o conjunto de cartas que podem ser utilizadas {@link #descarte}
- * e {@link #estoque } aquelas que estão armazenadas e podem ser transferidas
+ * do jogo. Esta estrutura consiste de dois objetos do tipo Pilhas
+ * que representam o conjunto de cartas que podem ser utilizadas descarte
+ * e estoque aquelas que estão armazenadas e podem ser transferidas
  * para o descarte.
  * 
  * @author João Carlos Nunes Bittencourt

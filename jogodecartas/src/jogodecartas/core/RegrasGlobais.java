@@ -14,27 +14,27 @@ import jogodecartas.estrutura.Pilhas;
 public class RegrasGlobais extends ControladorGlobal {
 
     /** 
-     * Determina se uma fundação pode receber uma nova c1.
+     * Determina se uma fundação pode receber uma nova carta.
      * Especificações:
      * <ul>
      * <li>Se uma fundação está vazia ela só pode receber um AS;</li>
      * <li>A fundação não pode ter atingido o seu tamanho limite;</li>
-     * <li>O naipe da nova c1 e da fundação destino devem ser iguais;</li>
-     * <li>A nova c1 deve ser sequência da c1 no topo da fundação;</li>
+     * <li>O naipe da nova carta e da fundação destino devem ser iguais;</li>
+     * <li>A nova carta deve ser sequência da carta no topo da fundação;</li>
      * </ul>
      *
-     * @param c1             c1 que será validada.
-     * @param destino           idenficiador da fundação de destino.
-     * @return                  <code>true</code> se a c1 é válida na fundação
+     * @param origem            carta que será validada.
+     * @param fundacao          fundação de destino.
+     * @return                  <code>true</code> se a carta é válida na fundação
      *                          <code>false</code> caso contrário.
      */
     public boolean validaFundacaoDestino(Carta origem, Pilhas fundacao) {
         GlobalConfig config = new GlobalConfig();
-        // Verifico se a fundação está vazia e libero apenas se a nova c1 for um AS
+        // Verifico se a fundação está vazia e libero apenas se a nova carta for um AS
         if (fundacao.isEmpty()) {
             return origem.valor().equals(Carta.Valor.AS);
         } else {
-            // Verifico se a pilha está cheia e se o naipe da c1 corresponde ao naipe da pilha e se a c1 é sequência
+            // Verifico se a pilha está cheia e se o naipe da carta corresponde ao naipe da pilha e se a carta é sequência
             if (fundacao.size() < config.getCartasPorNaipe() &&
                     naipeIgual(origem, fundacao.peek()) && cartaIsSequencia(origem, fundacao.peek())) {
                 return true;
@@ -49,17 +49,17 @@ public class RegrasGlobais extends ControladorGlobal {
      * Especificações:
      * <ul>
      * <li>Se uma fileira está vazia ela só pode receber um REI;</li>
-     * <li>O naipe da nova c1 e da fileira destino devem ser diferentes;</li>
-     * <li>A o valor da nova c1 deve anteceder a c1 no topo da fundação;</li>
+     * <li>O naipe da nova carta e da fileira destino devem ser diferentes;</li>
+     * <li>A o valor da nova cartac1 deve anteceder a c1 no topo da fundação;</li>
      * </ul>
      * 
-     * @param origem                                Carta do baralho que deseja validar.
-     * @param destino                               Identificador da fileira de destino.
-     * @return                                      <code>true</code> se a c1 for válida;
+     * @param carta                                Carta do baralho que deseja validar.
+     * @param fileira                               Identificador da fileira de destino.
+     * @return                                      <code>true</code> se a carta for válida;
      *                                              <code>false</code> caso contrário.
      */
     public boolean validaFileiraDestino(Carta carta, Pilhas fileira) {
-        // Se a fileira estiver vazia verifico se a c1 de origem é um REI
+        // Se a fileira estiver vazia verifico se a carta de origem é um REI
         if (fileira.isEmpty()) {
             return carta.valor().equals(Carta.Valor.REI);
         } else {
@@ -74,9 +74,11 @@ public class RegrasGlobais extends ControladorGlobal {
     /**
      * Determina de duas cartas possuem naipes iguais
      * 
-     * @param c1
-     * @param c2
-     * @return
+     * @param c1                     primeira carta que desejo verificar igualdade
+     * @param c2                     segunda carta que deseja verificar igualdade
+     * @return                       <code>true</code> se as cartas possuem
+     *                               naipes iguais;
+     *                               <code>false</code> caso contrário.
      */
     public boolean naipeIgual(Carta c1, Carta c2) {
         if (c1.naipe() == c2.naipe()) {
@@ -87,7 +89,7 @@ public class RegrasGlobais extends ControladorGlobal {
     }
 
     /**
-     * Determina se as core dos naipes de duas cartas são iguais.
+     * Determina se as cores dos naipes de duas cartas são iguais.
      *
      * @param c1                     primeira carta que deseja validar
      * @param c2                     segunda carta que deseja validar
@@ -98,7 +100,7 @@ public class RegrasGlobais extends ControladorGlobal {
     public boolean naipeCorIgual(Carta c1, Carta c2) {
         /* naipes pretos possuem valor ímpar, logo retornam 1, enquanto naipes
            vermelhos possuem valor par e logo retornam 0 */
-        if (c1.naipeColor() % 2 == c2.naipeColor() % 2) {
+        if (c1.naipeColor() == c2.naipeColor()) {
             return true;
         } else {
             return false;

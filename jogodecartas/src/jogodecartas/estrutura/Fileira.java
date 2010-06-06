@@ -3,10 +3,11 @@ package jogodecartas.estrutura;
 import java.util.ArrayList;
 
 /**
+ * Classe que implementa a estrutura que representa as fileiras em um jogo de
+ * carta qualquer.
  *
  * @author João Carlos Nunes Bittencourt
- * @author Gabriel Sanches de Almeida
- * @version 1.0a
+ * @version 2.0a
  */
 public class Fileira extends Pilhas {
 
@@ -14,7 +15,7 @@ public class Fileira extends Pilhas {
 
     /** Método cria um ArrayList de Pilhas que representam as Fileiras de um jogo de cartas
      *
-     * @param int quantidade                            Informe a quantidade de fileiras que deseja criar
+     * @param quantidade                            Informe a quantidade de fileiras que deseja criar
      */
     public Fileira(int quantidade) {
         fileiras = new ArrayList<Pilhas>();

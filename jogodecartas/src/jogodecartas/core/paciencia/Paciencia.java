@@ -5,7 +5,6 @@ import jogodecartas.Baralho;
 /** Classe principal do jogo Paciência
  *
  * @author João Carlos Nunes Bittencourt
- * @author Gabriel Sanches de Almeida
  */
 public class Paciencia {
 
