@@ -2,11 +2,7 @@ package jogodecartas.core;
 
 import jogodecartas.Baralho;
 import jogodecartas.Carta;
-import jogodecartas.core.paciencia.Controle;
 import jogodecartas.estrutura.Estoque;
-import jogodecartas.estrutura.Fileira;
-import jogodecartas.estrutura.Fundacao;
-import jogodecartas.estrutura.Pilhas;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -28,13 +24,13 @@ public class ControladorGlobalTest {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
-        System.out.println("Iniciando testes... \n");
+        System.out.println("Iniciando testes da classe ControladorGlobal... \n");
 
     }
 
     @AfterClass
     public static void tearDownClass() throws Exception {
-        System.out.println("\nTestes finalizados");
+        System.out.println("\nTestes da classe ControladorGlobal finalizados.");
         System.out.println("bye");
 
     }
@@ -66,9 +62,9 @@ public class ControladorGlobalTest {
         ControladorGlobal instance = new ControladorGlobal(1, 1);
         instance.getControleFileiras().getFileiras().get(idFileira).push(geraCarta(Carta.Naipe.PAUS, Carta.Valor.AS));
         int expResult = 1;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveDescarteFileira(estoque, idFileira);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
     }
 
@@ -86,9 +82,9 @@ public class ControladorGlobalTest {
         ControladorGlobal instance = new ControladorGlobal(1, 1);
         instance.getControleFileiras().getFileiras().get(idFileira).push(geraCarta(Carta.Naipe.PAUS, Carta.Valor.TRES));
         int expResult = 0;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveDescarteFileira(estoque, idFileira);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
     }
 
@@ -105,9 +101,9 @@ public class ControladorGlobalTest {
         int idFileira = 0;
         ControladorGlobal instance = new ControladorGlobal(1, 1);
         int expResult = 1;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveDescarteFileira(estoque, idFileira);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
     }
 
@@ -124,9 +120,9 @@ public class ControladorGlobalTest {
         int idFileira = 0;
         ControladorGlobal instance = new ControladorGlobal(1, 1);
         int expResult = 0;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveDescarteFileira(estoque, idFileira);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
     }
 
@@ -142,9 +138,9 @@ public class ControladorGlobalTest {
         int idFileira = 0;
         ControladorGlobal instance = new ControladorGlobal(1, 1);
         int expResult = -1;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveDescarteFileira(estoque, idFileira);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
         System.out.println("fim");
     }
@@ -154,16 +150,16 @@ public class ControladorGlobalTest {
      */
     @Test
     public void testMoveDescarteFundacaoVazia() {
-        System.out.println("Testando: moveDescarteFundacoes() início");
+        System.out.println("\nTestando: moveDescarteFundacoes() início");
         System.out.println(" > Movendo [AS de ESPADAS] do descarte para uma fundacao vazia");
         Estoque descarte = new Estoque();
         descarte.getDescarte().push(geraCarta(Carta.Naipe.ESPADAS, Carta.Valor.AS));
         int idFundacao = 0;
         ControladorGlobal instance = new ControladorGlobal(1, 1);
         int expResult = 0;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveDescarteFundacoes(descarte, idFundacao);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
 
     }
@@ -179,9 +175,9 @@ public class ControladorGlobalTest {
         int idFundacao = 0;
         ControladorGlobal instance = new ControladorGlobal(1, 1);
         int expResult = 1;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveDescarteFundacoes(descarte, idFundacao);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
     }
 
@@ -198,9 +194,9 @@ public class ControladorGlobalTest {
         ControladorGlobal instance = new ControladorGlobal(1, 1);
         instance.getControleFundacoes().getFundacoes().get(idFundacao).push(geraCarta(Carta.Naipe.OUROS, Carta.Valor.TRES));
         int expResult = 1;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveDescarteFundacoes(descarte, idFundacao);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
         System.out.println("fim");
     }
@@ -218,9 +214,9 @@ public class ControladorGlobalTest {
         instance.getControleFundacoes().getFundacoes().get(fundacao).push(geraCarta(Carta.Naipe.ESPADAS, Carta.Valor.AS));
         instance.getControleFileiras().getFileiras().get(fileira).push(geraCarta(Carta.Naipe.PAUS, Carta.Valor.DOIS));
         int expResult = 0;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveFundacaoToFileira(fundacao, fileira);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
     }
 
@@ -235,9 +231,9 @@ public class ControladorGlobalTest {
         ControladorGlobal instance = new ControladorGlobal(1, 1);
         instance.getControleFundacoes().getFundacoes().get(fundacao).push(geraCarta(Carta.Naipe.ESPADAS, Carta.Valor.AS));
         int expResult = 1;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveFundacaoToFileira(fundacao, fileira);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
     }
 
@@ -252,9 +248,9 @@ public class ControladorGlobalTest {
         ControladorGlobal instance = new ControladorGlobal(1, 1);
         instance.getControleFileiras().getFileiras().get(fileira).push(geraCarta(Carta.Naipe.OUROS, Carta.Valor.DOIS));
         int expResult = -1;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveFundacaoToFileira(fundacao, fileira);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
     }
 
@@ -269,9 +265,9 @@ public class ControladorGlobalTest {
         ControladorGlobal instance = new ControladorGlobal(1, 1);
         instance.getControleFundacoes().getFundacoes().get(fundacao).push(geraCarta(Carta.Naipe.ESPADAS, Carta.Valor.REI));
         int expResult = 0;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveFundacaoToFileira(fundacao, fileira);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
         System.out.println("fim");
     }
@@ -281,7 +277,7 @@ public class ControladorGlobalTest {
      */
     @Test
     public void testMoveFileiraToFileira() {
-        System.out.println("Testando: moveFileiraToFileira() início");
+        System.out.println("\nTestando: moveFileiraToFileira() início");
         System.out.println(" > Movendo uma carta entre duas fileiras");
         int origem = 1;
         int destino = 0;
@@ -292,9 +288,9 @@ public class ControladorGlobalTest {
         instance.getControleFileiras().getFileiras().get(origem).push(geraCarta(Carta.Naipe.COPAS, Carta.Valor.NOVE));
         instance.getControleFileiras().getFileiras().get(origem).push(geraCarta(Carta.Naipe.ESPADAS, Carta.Valor.OITO));
         int expResult = 0;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveFileiraToFileira(origem, destino, profundidade);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
     }
 
@@ -313,9 +309,9 @@ public class ControladorGlobalTest {
         instance.getControleFileiras().getFileiras().get(origem).push(geraCarta(Carta.Naipe.ESPADAS, Carta.Valor.OITO));
         instance.getControleFileiras().getFileiras().get(origem).push(geraCarta(Carta.Naipe.COPAS, Carta.Valor.SETE));
         int expResult = 0;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveFileiraToFileira(origem, destino, profundidade);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
     }
 
@@ -337,9 +333,9 @@ public class ControladorGlobalTest {
         instance.getControleFileiras().getFileiras().get(origem).push(geraCarta(Carta.Naipe.ESPADAS, Carta.Valor.OITO));
         instance.getControleFileiras().getFileiras().get(origem).push(geraCarta(Carta.Naipe.COPAS, Carta.Valor.SETE));
         int expResult = 0;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveFileiraToFileira(origem, destino, profundidade);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
     }
 
@@ -358,9 +354,9 @@ public class ControladorGlobalTest {
         instance.getControleFileiras().getFileiras().get(origem).push(geraCarta(Carta.Naipe.COPAS, Carta.Valor.OITO));
         instance.getControleFileiras().getFileiras().get(origem).push(geraCarta(Carta.Naipe.ESPADAS, Carta.Valor.SETE));
         int expResult = 1;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveFileiraToFileira(origem, destino, profundidade);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
     }
 
@@ -378,9 +374,9 @@ public class ControladorGlobalTest {
         instance.getControleFileiras().getFileiras().get(origem).push(geraCarta(Carta.Naipe.ESPADAS, Carta.Valor.DAMA));
         instance.getControleFileiras().getFileiras().get(origem).push(geraCarta(Carta.Naipe.OUROS, Carta.Valor.VALETE));
         int expResult = 0;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveFileiraToFileira(origem, destino, profundidade);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
     }
 
@@ -389,7 +385,7 @@ public class ControladorGlobalTest {
      */
     @Test
     public void testMoveDuasCartasFileiraToFileiraVaziaErrado() {
-        System.out.println(">> Movendo duas carta de uma fileira para outra vazia");
+        System.out.println(" > Movendo duas carta de uma fileira para outra vazia");
         int origem = 1;
         int destino = 0;
         int profundidade = 2;
@@ -398,9 +394,9 @@ public class ControladorGlobalTest {
         instance.getControleFileiras().getFileiras().get(origem).push(geraCarta(Carta.Naipe.ESPADAS, Carta.Valor.NOVE));
         instance.getControleFileiras().getFileiras().get(origem).push(geraCarta(Carta.Naipe.OUROS, Carta.Valor.OITO));
         int expResult = 1;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveFileiraToFileira(origem, destino, profundidade);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
         System.out.println("fim");
     }
@@ -410,16 +406,16 @@ public class ControladorGlobalTest {
      */
     @Test
     public void testMoveFileiraToFundacao() {
-        System.out.println("Testando: moveFileiraToFundacao() início");
+        System.out.println("\nTestando: moveFileiraToFundacao() início");
         System.out.println(" > Enviando carta [AS de OUROS] da fileira para uma fundação vazia");
         int fileira = 0;
         int fundacao = 0;
         ControladorGlobal instance = new ControladorGlobal(1, 1);
         instance.getControleFileiras().getFileiras().get(fileira).push(geraCarta(Carta.Naipe.OUROS, Carta.Valor.AS));
         int expResult = 0;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveFileiraToFundacao(fileira, fundacao);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
     }
 
@@ -428,16 +424,15 @@ public class ControladorGlobalTest {
      */
     @Test
     public void testMoveCartaErradaFileiraToFundacaoVazia() {
-        System.out.println("Testando: moveFileiraToFundacao() início");
         System.out.println(" > Enviando carta [REI de OUROS] da fileira para uma fundação vazia");
         int fileira = 0;
         int fundacao = 0;
         ControladorGlobal instance = new ControladorGlobal(1, 1);
         instance.getControleFileiras().getFileiras().get(fileira).push(geraCarta(Carta.Naipe.OUROS, Carta.Valor.REI));
         int expResult = 1;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveFileiraToFundacao(fileira, fundacao);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
     }
 
@@ -446,7 +441,6 @@ public class ControladorGlobalTest {
      */
     @Test
     public void testMoveCartaErradaFileiraToFundacao() {
-        System.out.println("Testando: moveFileiraToFundacao() início");
         System.out.println(" > Enviando carta [DEZ de PAUS] da fileira para uma fundação com 3 cartas");
         int fileira = 0;
         int fundacao = 0;
@@ -456,9 +450,9 @@ public class ControladorGlobalTest {
         instance.getControleFundacoes().getFundacoes().get(fundacao).push(geraCarta(Carta.Naipe.PAUS, Carta.Valor.DOIS));
         instance.getControleFundacoes().getFundacoes().get(fundacao).push(geraCarta(Carta.Naipe.PAUS, Carta.Valor.TRES));
         int expResult = 1;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveFileiraToFundacao(fileira, fundacao);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
     }
 
@@ -467,7 +461,6 @@ public class ControladorGlobalTest {
      */
     @Test
     public void testMoveCartaFileiraToFundacao() {
-        System.out.println("Testando: moveFileiraToFundacao() início");
         System.out.println(" > Enviando carta [QUATRO de PAUS] da fileira para uma fundação com 3 cartas");
         int fileira = 0;
         int fundacao = 0;
@@ -477,9 +470,9 @@ public class ControladorGlobalTest {
         instance.getControleFundacoes().getFundacoes().get(fundacao).push(geraCarta(Carta.Naipe.PAUS, Carta.Valor.DOIS));
         instance.getControleFundacoes().getFundacoes().get(fundacao).push(geraCarta(Carta.Naipe.PAUS, Carta.Valor.TRES));
         int expResult = 0;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         int result = instance.moveFileiraToFundacao(fileira, fundacao);
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
     }
 
@@ -488,7 +481,7 @@ public class ControladorGlobalTest {
      */
     @Test
     public void testCompletou() {
-        System.out.println("Testando: completou() início");
+        System.out.println("\nTestando: completou() início");
         System.out.println(" > Com as fundações completas, eu verifico se o jogo terminou");
         baralho.novoBaralho();
         ControladorGlobal instance = new ControladorGlobal(1, 4);
@@ -498,9 +491,9 @@ public class ControladorGlobalTest {
             }
         }
         boolean expResult = true;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         boolean result = instance.completou();
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
     }
 
@@ -509,14 +502,13 @@ public class ControladorGlobalTest {
      */
     @Test
     public void testCompletouFundacoesVazias() {
-        System.out.println("Testando: completou() início");
         System.out.println(" > Com as fundações vazias, eu verifico se o jogo terminou");
         baralho.novoBaralho();
         ControladorGlobal instance = new ControladorGlobal(1, 4);        
         boolean expResult = false;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         boolean result = instance.completou();
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
     }
 
@@ -525,7 +517,6 @@ public class ControladorGlobalTest {
      */
     @Test
     public void testCompletouFundacoesIncompletas() {
-        System.out.println("Testando: completou() início");
         System.out.println(" > Com as fundações incompletas, eu verifico se o jogo terminou");
         baralho.novoBaralho();
         ControladorGlobal instance = new ControladorGlobal(1, 4);
@@ -535,9 +526,9 @@ public class ControladorGlobalTest {
             }
         }
         boolean expResult = false;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         boolean result = instance.completou();
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
     }
 
@@ -546,7 +537,6 @@ public class ControladorGlobalTest {
      */
     @Test
     public void testCompletouUmaFundacaoCompleta() {
-        System.out.println("Testando: completou() início");
         System.out.println(" > Com uma fundação completas, eu verifico se o jogo terminou");
         baralho.novoBaralho();
         ControladorGlobal instance = new ControladorGlobal(1, 4);
@@ -556,9 +546,9 @@ public class ControladorGlobalTest {
             }
         }
         boolean expResult = false;
-        System.out.println("Resultado esperado: " + expResult);
+        System.out.println("  Resultado esperado: " + expResult);
         boolean result = instance.completou();
-        System.out.println("Resultado obtido: " + result);
+        System.out.println("  Resultado obtido: " + result);
         assertEquals(expResult, result);
         System.out.println("fim");
     }

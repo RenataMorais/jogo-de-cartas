@@ -76,6 +76,11 @@ public class Controle {
         return pilhaDeEstoque;
     }
 
+    public void restart(){
+        Paciencia paciencia = new Paciencia();
+        paciencia.start();
+    }
+
     /**
      * Acesso aos métodos do controlador getControleFundacoes do framework
      *

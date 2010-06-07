@@ -134,6 +134,11 @@ public class Interface {
     public void menu(Controle controle) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String input = new String();
+        
+        if (controle.getControleGlobal().completou()) {
+            System.out.println("PARABÉNS! Você foi muito paciente... ;)");
+            System.out.println("Agora vamos jogar novamente?");
+        }
 
         System.out.println("\nAÇÕES DO JOGO PACIÊNCIA");
         System.out.println("Digite o número de uma das opções abaixo [1 - 5]:");
@@ -166,6 +171,15 @@ public class Interface {
         } else if (input.equals("2")) {
             controle.getpilhaDeEstoque().moveToDescarte();
             controle.telaPrincipal(controle);
+        } else if (input.equals("3")) {
+            if (controle.getpilhaDeEstoque().getCartasViradas() == 1) {
+                controle.getpilhaDeEstoque().setCartasViradas(3);
+            } else {
+                controle.getpilhaDeEstoque().setCartasViradas(1);
+            }
+            controle.telaPrincipal(controle);
+        } else if (input.equals("4")) {
+            controle.restart();
         } else if (input.equals("5")) {
             System.exit(0);
         }
@@ -197,8 +211,7 @@ public class Interface {
                 movimentaFileiraToFileira(origem - 5, destino - 5, profundidade);
             } else if ((origem >= 5 && origem <= 11) && (destino >= 1 && destino <= 4)) {
                 movimentaFileiraToFundacao(origem - 5, destino - 1);
-            } else if((origem >= 1 && origem <= 4) && (destino >= 5 && destino <= 11)) {
-
+            } else if ((origem >= 1 && origem <= 4) && (destino >= 5 && destino <= 11)) {
             } else {
                 System.out.println("Opção Inválida!");
                 controle.telaPrincipal(controle);
@@ -254,7 +267,7 @@ public class Interface {
         controle.telaPrincipal(controle);
     }
 
-    public void movimentaFileiraToFundacao(int origem, int destino){
+    public void movimentaFileiraToFundacao(int origem, int destino) {
         int verify = controle.getControleGlobal().moveFileiraToFundacao(origem, destino);
 
         if (verify == -1) {
@@ -270,7 +283,7 @@ public class Interface {
         controle.telaPrincipal(controle);
     }
 
-    public void movimentaFundacaoToFileira(int origem, int destino){
+    public void movimentaFundacaoToFileira(int origem, int destino) {
         int verify = controle.getControleGlobal().moveFundacaoToFileira(origem, destino);
 
         if (verify == -1) {

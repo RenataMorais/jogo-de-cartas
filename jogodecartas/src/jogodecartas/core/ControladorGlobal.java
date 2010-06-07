@@ -2,7 +2,7 @@ package jogodecartas.core;
 
 import java.util.Stack;
 import jogodecartas.Carta;
-import jogodecartas.core.paciencia.Regras;
+import jogodecartas.core.RegrasGlobais;
 import jogodecartas.estrutura.Estoque;
 import jogodecartas.estrutura.Fileira;
 import jogodecartas.estrutura.Fundacao;
@@ -38,7 +38,7 @@ public class ControladorGlobal {
         config = new GlobalConfig();
         controleFundacoes = new Fundacao(fundacoes);
         controleFileiras = new Fileira(fileiras);
-        regras = new Regras();
+        regras = new RegrasGlobais();
     }
 
     /** 
