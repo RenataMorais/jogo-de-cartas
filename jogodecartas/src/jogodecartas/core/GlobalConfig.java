@@ -1,9 +1,10 @@
 package jogodecartas.core;
 
 /**
- *
+ * Classe de configuração comum à todos os jogos de carta. Seus atributos
+ * generalizados podem ser modificados a depender do jogo que deseja-se implementar.
+ * 
  * @author João Carlos Nunes Bittencourt
- * @author Gabriel Sanches de Almeida
  */
 public class GlobalConfig {
     private int naipes;

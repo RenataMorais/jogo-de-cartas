@@ -3,7 +3,6 @@ package jogodecartas.estrutura;
 import java.util.Stack;
 import jogodecartas.Carta;
 import jogodecartas.core.GlobalConfig;
-import jogodecartas.core.RegrasGlobais;
 
 /** 
  * Classe que define um identificador para cada conjunto de cartas e o modo de
@@ -16,7 +15,6 @@ import jogodecartas.core.RegrasGlobais;
  */
 public class Pilhas extends Stack<Carta> {
 
-    RegrasGlobais controle;
     GlobalConfig config;
 
     public int posicao(int pilha, int profundidade){

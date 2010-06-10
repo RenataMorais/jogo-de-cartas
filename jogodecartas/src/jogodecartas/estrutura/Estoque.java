@@ -17,7 +17,7 @@ public class Estoque extends Pilhas {
 
     private Pilhas estoque = new Pilhas();
     private Pilhas descarte = new Pilhas();
-    private int cartasViradas = 0;
+    private int cartasViradas = 1;
 
     /** 
      * Exibe as cartas presentes no descarte, de acordo com {@link #getCartasViradas()}

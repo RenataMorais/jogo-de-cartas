@@ -2,8 +2,8 @@ package jogodecartas.core.paciencia;
 
 import jogodecartas.Baralho;
 
-/** Classe principal do jogo Paciência
- *
+/** 
+ * Classe principal do jogo Paciência
  * @author João Carlos Nunes Bittencourt
  */
 public class Paciencia {

@@ -2,14 +2,13 @@ package jogodecartas.core;
 
 import java.util.Stack;
 import jogodecartas.Carta;
-import jogodecartas.core.RegrasGlobais;
 import jogodecartas.estrutura.Estoque;
 import jogodecartas.estrutura.Fileira;
 import jogodecartas.estrutura.Fundacao;
 
 /** 
- * Classe de controle geral do framework, implementa os métodos gerais
- * para os jogos de cartas.
+ * Classe de controle geral do framework, implementa os métodos gerais de movimentação
+ * e controle dos diferentes jogos de cartas.
  *
  * @author João Carlos Nunes Bittencourt
  * @version 1.0a

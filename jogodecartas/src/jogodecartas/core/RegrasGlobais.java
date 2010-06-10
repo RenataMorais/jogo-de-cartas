@@ -6,7 +6,7 @@ import jogodecartas.estrutura.Pilhas;
 /**
  * As regras globais compreendem um conjunto de limitações impostas pelos jogos
  * de cartas semelhantes ao paciência. Esta classe implementa os métodos que
- * validam a movimentação das c1 no tabuleiro.
+ * validam a movimentação das cartas no tabuleiro.
  *
  * @author João Carlos Nunes Bittencourt
  * @version 2.0a
